@@ -1,3 +1,5 @@
+/// @author Mike Bello
+
 import { ethers, Contract } from "ethers";
 import "dotenv/config";
 import { MyToken } from "../typechain";
