@@ -1,3 +1,5 @@
+/// @author Mike Bello
+
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
 import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
