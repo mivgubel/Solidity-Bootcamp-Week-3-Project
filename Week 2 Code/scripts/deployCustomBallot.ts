@@ -1,4 +1,3 @@
-/// @author Mike Bello
 import { ethers } from "ethers";
 import "dotenv/config";
 import * as CustomBallotJson from "../artifacts/contracts/CustomBallot.sol/CustomBallot.json";

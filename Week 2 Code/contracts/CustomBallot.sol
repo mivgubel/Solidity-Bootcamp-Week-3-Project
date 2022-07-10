@@ -19,6 +19,7 @@ contract CustomBallot {
     }
 
     mapping(address => uint256) public spentVotePower;
+    mapping(address => uint256) public votesDelegatedToAddress;
 
     Proposal[] public proposals;
     IERC20Votes public voteToken;
@@ -33,11 +34,22 @@ contract CustomBallot {
     }
 
     function vote(uint256 proposal, uint256 amount) external {
-        uint256 votingPowerAvailable = votingPower();
+        uint256 votingPowerAvailable = votingPower() +
+            votesDelegatedToAddress[msg.sender];
         require(votingPowerAvailable >= amount, "Has not enough voting power");
         spentVotePower[msg.sender] += amount;
         proposals[proposal].voteCount += amount;
         emit Voted(msg.sender, proposal, amount, proposals[proposal].voteCount);
+    }
+
+    function delegate(address to, uint256 amount) external {
+        uint256 votingPowerAvailable = votingPower();
+        require(
+            votingPowerAvailable >= amount,
+            "Cannot delegate more votes than you have"
+        );
+        spentVotePower[msg.sender] += amount;
+        votesDelegatedToAddress[to] += amount;
     }
 
     function winningProposal() public view returns (uint256 winningProposal_) {
