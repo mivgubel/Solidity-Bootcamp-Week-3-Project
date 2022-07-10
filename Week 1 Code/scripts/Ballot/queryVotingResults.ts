@@ -1,3 +1,5 @@
+/// @author Cody Reeves
+
 import { Contract, ethers } from "ethers";
 import "dotenv/config";
 import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
@@ -17,8 +19,8 @@ async function main() {
   const provider = ethers.providers.getDefaultProvider("ropsten");
   const signer = wallet.connect(provider);
 
+  //ARGUMENT 1: Ballot contract address
   if (process.argv.length < 3) throw new Error("Ballot address missing");
-
   const ballotAddress = process.argv[2];
 
   const ballotContract: Ballot = new Contract(
@@ -27,12 +29,10 @@ async function main() {
     signer
   ) as Ballot;
 
+  //Display the winning proposal
   console.log("Getting Proposal results: \n");
-
-  
   const winnerName = await ballotContract.winnerName();
   console.log(`Winning proposal is: ${ethers.utils.parseBytes32String(winnerName)}`);
-  
 }
 
 main().catch((error) => {
