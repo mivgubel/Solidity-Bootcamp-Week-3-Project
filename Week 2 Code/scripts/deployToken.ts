@@ -1,6 +1,6 @@
 ///@author Cody Reeves
 
-import { ethers } from "ethers";
+import { ethers } from "hardhat";
 import "dotenv/config";
 import * as TokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 
@@ -39,3 +39,4 @@ main().catch((error) => {
   console.log(error);
   process.exitCode = 1;
 });
+
