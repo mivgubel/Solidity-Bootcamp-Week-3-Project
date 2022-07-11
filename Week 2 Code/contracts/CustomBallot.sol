@@ -52,6 +52,11 @@ contract CustomBallot {
         votesDelegatedToAddress[to] += amount;
     }
 
+    function returnPastVotes() public returns (uint256) {
+        uint256 result = voteToken.getPastVotes();
+        return result;
+    }
+
     function winningProposal() public view returns (uint256 winningProposal_) {
         uint256 winningVoteCount = 0;
         for (uint256 p = 0; p < proposals.length; p++) {

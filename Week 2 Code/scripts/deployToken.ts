@@ -1,3 +1,5 @@
+///@author Cody Reeves
+
 import { ethers } from "ethers";
 import "dotenv/config";
 import * as TokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
@@ -5,13 +7,7 @@ import * as TokenJson from "../artifacts/contracts/Token.sol/MyToken.json";
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
 
-function convertStringArrayToBytes32(array: string[]) {
-  const bytes32Data = [];
-  for (let i = 0; i < array.length; i++) {
-    bytes32Data.push(ethers.utils.formatBytes32String(array[i]));
-  }
-  return bytes32Data;
-}
+//@dev Deleted unused function
 
 export async function main() {
   const wallet =
